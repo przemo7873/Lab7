@@ -49,18 +49,16 @@
                     <td th:text="|${employee.firstName} ${employee.lastName}|"></td>
                     <td th:text="${employee.jobTitle}"></td>
                     <td th:text="${#numbers.formatDecimal(employee.salary,3,'WHITESPACE',2,'POINT')}"></td>
-                    <td th:text="${#dates.format(employee.dateOfEmployment,'dd-MM-yyyy')}"></td>
+                    <td th:text="${#dates.format(employee.dateOfEmployment,'dd.MM.yyyy')}"></td>
                     <td th:text="${employee.dateOfTermination != null} ? 
-                        ${#dates.format(employee.dateOfTermination,'dd-MM-yyyy')}
+                        ${#dates.format(employee.dateOfTermination,'dd.MM.yyyy')}
                         : 'Wciąż pracuje'"></td>
                     <td>
                         <p th:each="skill, iStat : ${employee.skills}" th:text="${iStat.last} ? |${skill.name} (${skill.level})| : 
                            |${skill.name} (${skill.level}), |"></p>
                     </td>
                     <td>
-                        <ul th:each="comment: ${employee.comments}" style="list-style-type:none">
-                            <li><p th:text="${comment}"></p></li>
-                        </ul>
+                        <p th:each="comment: ${employee.comments}" th:text="${comment}"></p>
                     </td>
                     <td><img th:src="${employee.photoUrl}" class="empPhoto"/></td>
                 </tr>
